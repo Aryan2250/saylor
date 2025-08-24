@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Saylor Certificate Verification - Static Demo</title>
+<style>
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mform {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  .mform img {
+    max-width: 200px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    color: #003366;
+    margin-bottom: 30px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+
+  #result {
+    margin-top: 15px;
+    font-weight: bold;
+  }
+
+  #verifiedImage {
+    margin: 30px auto 0 auto;
+    display: none;
+    max-width: 300px;
+    width: 80%;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+</style>
+</head>
+<body>
+
+<div class="mform">
+  <!-- Saylor logo -->
+  <img src="C:/Users/aryan/OneDrive/Desktop/Screenshot 2025-08-24 182639.png" alt="Saylor Logo">
+
+  <!-- Heading -->
+  <h2>VERIFY CERTIFICATES</h2>
+
+  <!-- Form -->
+  <form id="verifyForm">
+    <div class="form-group">
+      <label for="id_code">Code</label>
+      <input type="text" class="form-control" name="code" id="id_code" 
+             value="" required>
+    </div>
+
+    <div class="form-group">
+      <input type="submit" class="btn btn-primary" name="verify" id="id_verify" value="Verify">
+    </div>
+
+    <p id="result"></p>
+  </form>
+</div>
+
+<!-- Image displayed after verification -->
+<img id="verifiedImage" src="" alt="Verified Certificate">
+
+<script>
+  // Valid codes with respective images
+  const validCodes = {
+    "9284613057AB": "C:/Users/aryan/OneDrive/Desktop/aryan verify.png",
+    "8042156937SR": "C:/Users/aryan/OneDrive/Desktop/srh.png"
+  };
+
+  document.getElementById("verifyForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    const code = document.getElementById("id_code").value.trim();
+    const result = document.getElementById("result");
+    const verifiedImage = document.getElementById("verifiedImage");
+
+    if(validCodes[code]){
+      result.innerText = "Certificate Verified!";
+      result.style.color = "green";
+      verifiedImage.src = validCodes[code];
+      verifiedImage.style.display = "block";
+    } else {
+      result.innerText = "Invalid code";
+      result.style.color = "red";
+      verifiedImage.style.display = "none";
+    }
+  });
+</script>
+
+</body>
+</html>
